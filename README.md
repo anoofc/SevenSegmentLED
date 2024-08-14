@@ -2,7 +2,7 @@
 This document describes the SevenSegmentLED library for Arduino, which allows you to control a seven-segment LED display using NeoPixel LEDs.
 
 Arrangement of pixels in seven segment is should be as below
-
+```cpp
            1
       8888888888
    6  88      88  2
@@ -12,7 +12,7 @@ Arrangement of pixels in seven segment is should be as below
       88      88
       8888888888
            4
-
+```
 
 # Dependencies
 This library requires the following libraries to be installed in your Arduino IDE:
