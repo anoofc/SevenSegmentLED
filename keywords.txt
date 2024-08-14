@@ -1,0 +1,20 @@
+###########################################
+# Syntax Coloring Map For SevenSegmentLED
+###########################################
+
+###########################################
+# Datatypes (KEYWORD1)
+###########################################
+
+SevenSegmentLED	KEYWORD1
+Adafruit_NeoPixel	KEYWORD1
+
+###########################################
+# Methods and Functions (KEYWORD2)
+###########################################
+
+SevenSegmentLED	KEYWORD2
+begin	KEYWORD2
+clear	KEYWORD2
+displayNumber	KEYWORD2
+numberUpdate	KEYWORD2

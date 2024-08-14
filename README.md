@@ -2,6 +2,7 @@
 This document describes the SevenSegmentLED library for Arduino, which allows you to control a seven-segment LED display using NeoPixel LEDs.
 
 Arrangement of pixels in seven segment should be as below
+
 ```cpp
            1
       8888888888
@@ -60,11 +61,11 @@ sevenSeg.begin();
  - Display a number on a specific digit:
 
 ```cpp
-// Define the number to display, color of the lit segments (red, green, blue), off segment color, and digit number (0-based, leftmost digit)
-sevenSeg.displayNumber(number, r, g, b, color2, digit);
+// Define the number to display, color of the lit segments (red, green, blue), and digit number (0-based, leftmost digit)
+sevenSeg.displayNumber(number, r, g, b, digit);
 
-// Example: Display the digit 5 (red) on the second digit (from left) with black off segments
-sevenSeg.displayNumber(5, 255, 0, 0, BLACK, 1);
+// Example: Display the digit 5 (red) on the second digit (from left) 
+sevenSeg.displayNumber(5, 255, 0, 0, 1);
 ```
 
  - Display a larger number across all digits:
