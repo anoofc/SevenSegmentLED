@@ -1,13 +1,10 @@
 #ifndef SevenSegmentLED_h     // Include guard to prevent the header file from being included more than once
 #define SevenSegmentLED_h     // Define the header file if it has not been defined
 
-#include <Adafruit_NeoPixel.h>    // Include the Adafruit NeoPixel library
+#include <Adafruit_NeoPixel.h>      // Include the Adafruit NeoPixel library
 
-#define TROUBLESHOOT 0            // Set to 1 to enable debug output (Optional, comment out if not needed)
+// #define TROUBLESHOOT             // Uncomment to enable debug output (Optional)
 
-
-// Define colors
-#define BLACK strip.Color(0, 0, 0)    // Black
 
 class SevenSegmentLED {       // Define the SevenSegmentLED class
 
@@ -17,10 +14,11 @@ class SevenSegmentLED {       // Define the SevenSegmentLED class
 // The public methods and properties are used to perform actions on the class properties
 public:
   SevenSegmentLED(int ledPin, int digits);
+  uint8_t lcDigits = 0;
   void begin();
   void clear();
-  void displayNumber(uint8_t number, uint8_t r, uint8_t g, uint8_t b, uint32_t color2, uint8_t digit);
-  void numberUpdate(uint16_t number, uint8_t r, uint8_t g, uint8_t b);
+  void displayNumber(uint8_t number, uint8_t r, uint8_t g, uint8_t b, uint8_t digit);
+  void numberUpdate(uint32_t number, uint8_t r, uint8_t g, uint8_t b);
 
 
 // Private methods and properties

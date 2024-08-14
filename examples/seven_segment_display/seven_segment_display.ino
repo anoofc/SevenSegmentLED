@@ -37,6 +37,6 @@ void loop() {
 
   display.clear();                              // Clear the display
   // Example: Display the digit 5 (red) on the second digit (from left)
-  display.displayNumber(5, 255, 0, 0, BLACK, 1);
+  display.displayNumber(5, 255, 0, 0, 1);
   delay(1000);
 }

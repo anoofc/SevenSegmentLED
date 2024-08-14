@@ -1,44 +1,48 @@
 #include "SevenSegmentLED.h"      // Include the SevenSegmentLED header file
 
+
 // Constructor
-SevenSegmentLED::SevenSegmentLED(int ledPin, int digits) : strip(digits*7, ledPin, NEO_GRB + NEO_KHZ800) { }
+SevenSegmentLED::SevenSegmentLED(int ledPin, int digits) : strip(digits*7, ledPin, NEO_GRB + NEO_KHZ800) {    // Constructor to initialize the display with the number of digits and the pin number of the LED strip
+  lcDigits = digits;                // Set the number of digits
+  }
 
 // Initialize the display
-void SevenSegmentLED::begin() {
-  strip.begin();  // Initialize the LED strip
-  strip.show();   // Initialize all pixels to 'off'
+void SevenSegmentLED::begin() {     // Function to initialize the display
+  strip.begin();                    // Initialize the strip
+  strip.show();                     // Update the strip
 }
 
 // Display a number on the specified digit
-void SevenSegmentLED::displayNumber(uint8_t number, uint8_t r,uint8_t g, uint8_t b, uint32_t color2, uint8_t digit) {   // Define the displayNumber (Number to display, (Red, Green, Blue) Color of the segment, Off Segment Colour, Digit Number 0-4)
-  for (int i = 0; i < 7; i++) {                                 // Loop through the 7 segments of the display
-    if (numbers[number][i] == 1) {                              // Check if the segment should be turned on
-      strip.setPixelColor(i + (7 * digit), strip.Color(r,g,b)); // Set the color of the segment with given color
-    } else {
-      strip.setPixelColor(i + (7 * digit), color2);             // Set the color of the segment to black
-    }
+void SevenSegmentLED::displayNumber(uint8_t number, uint8_t r, uint8_t g, uint8_t b, uint8_t digit) {   // Input the number to be displayed, the r,g,b values of color of the display and the digit to display the number on
+  int baseIndex = 7 * digit;            // Calculate the base index of the digit
+  for (int i = 0; i < 7; i++) {         // Loop through the 7 segments of the digit
+    strip.setPixelColor(baseIndex + i, numbers[number][i] ? strip.Color(r, g, b) : strip.Color(0, 0, 0));   // Set the color of the segment based on the number
   }
-  strip.show();   // Update the display
+  strip.show();            // Update the strip
 }
 
-void SevenSegmentLED::clear(){
-  strip.clear();
-  strip.show();
+void SevenSegmentLED::clear() {   // Function to Clear the display
+  strip.clear();                  // Clear the strip
+  strip.show();                   // Update the strip
 }
 
 // Update the display with a number
-void SevenSegmentLED::numberUpdate(uint16_t number, uint8_t r, uint8_t g, uint8_t b) {    // Define the numberUpdate (Number to display, Red, Green, Blue)
-  uint8_t digit0 = number % 10;                 // Get the value of the first digit
-  uint8_t digit1 = (number / 10) % 10;          // Get the value of the second digit
-  uint8_t digit2 = (number / 100) % 10;         // Get the value of the third digit
-  uint8_t digit3 = (number / 1000) % 10;        
+void SevenSegmentLED::numberUpdate(uint32_t number, uint8_t r, uint8_t g, uint8_t b) {    // Input the number to be displayed and the r,g,b values of color of the display
+  uint8_t digits[lcDigits];                             // Array to store the digits of the number
+  for (int i = 0; i < lcDigits; i++) {                  // Loop through the digits
+    digits[i] = number % 10;                            // Get the last digit of the number        
+    number /= 10;                                       // Remove the last digit from the number and repeat the process                
+  }
 
-  displayNumber(digit0, r,g,b, BLACK, 3);       // Display the first digit
-  displayNumber(digit1, r,g,b, BLACK, 2);       // Display the second digit
-  displayNumber(digit2, r,b,g, BLACK, 1);       // Display the third digit
-  displayNumber(digit3, r,b,g, BLACK, 0);       // Display the fourth digit
+  for (int i = 0; i < lcDigits; i++) {                      // Loop through the digits
+    displayNumber(digits[i], r, g, b, (lcDigits-1) - i);    // Display the digits on the display
+  }
 
-  #ifdef TROUBLESHOOT                   // Check if the TROUBLESHOOT flag is set
-  Serial.println("Digit 3: " + String(digit3) + "\t Digit 2: " + String(digit2) + "\t Digit 1: " + String(digit1) + "\t Digit 0: " + String(digit0));   // Print the value of the digits to the serial monitor
+  #ifdef TROUBLESHOOT     // Print the digits to the serial monitor for troubleshooting (Optional) (Uncomment TROUBLESHOOT in Header file to enable)
+  for (int i = (lcDigits-1); i >= 0; i--) {
+    Serial.print("Digit " + String(lcDigits - 1 - i) + ": " + String(digits[i]));
+    if (i > 0) Serial.print("\t");
+  }
+  Serial.println();
   #endif
 }
