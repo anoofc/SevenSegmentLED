@@ -8,10 +8,6 @@
 
 class SevenSegmentLED {       // Define the SevenSegmentLED class
 
-// Public methods and properties
-// The public methods and properties are used to interact with the class
-// The public methods and properties are used to set and get the values of the class properties
-// The public methods and properties are used to perform actions on the class properties
 public:
   SevenSegmentLED(int ledPin, int digits);
   uint8_t lcDigits = 0;
@@ -20,11 +16,6 @@ public:
   void displayNumber(uint8_t number, uint8_t r, uint8_t g, uint8_t b, uint8_t digit);
   void numberUpdate(uint32_t number, uint8_t r, uint8_t g, uint8_t b);
 
-
-// Private methods and properties
-// The private methods and properties are used internally by the class
-// The private methods and properties are used to perform internal operations
-// The private methods and properties are not accessible from outside the class
 private: 
   Adafruit_NeoPixel strip;              // Create an instance of the Adafruit NeoPixel class
   
