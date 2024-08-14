@@ -21,6 +21,11 @@ void SevenSegmentLED::displayNumber(uint8_t number, uint8_t r,uint8_t g, uint8_t
   strip.show();   // Update the display
 }
 
+void SevenSegmentLED::clear(){
+  strip.clear();
+  strip.show();
+}
+
 // Update the display with a number
 void SevenSegmentLED::numberUpdate(uint16_t number, uint8_t r, uint8_t g, uint8_t b) {    // Define the numberUpdate (Number to display, Red, Green, Blue)
   uint8_t digit0 = number % 10;                 // Get the value of the first digit

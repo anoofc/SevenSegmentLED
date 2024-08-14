@@ -11,6 +11,9 @@ SevenSegmentLED display(LEDPIN, DIGITS);    // Create an instance of the SevenSe
 
 void setup() {
   display.begin();                              // Initialize the display
+  display.numberUpdate(8888, 255, 0, 0);        // Display the number 8888 in red
+  delay(1000);
+  display.clear();                              // Clear the display    
 }
 
 void loop() {
@@ -19,4 +22,5 @@ void loop() {
   display.numberUpdate(9876, 0, 255, 0);        // Display the number 9876 in green
   delay(1000);
   display.numberUpdate(5432, 0, 0, 255);        // Display the number 5432 in blue
+  delay(1000);
 }

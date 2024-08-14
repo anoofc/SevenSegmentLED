@@ -18,6 +18,7 @@ class SevenSegmentLED {       // Define the SevenSegmentLED class
 public:
   SevenSegmentLED(int ledPin, int digits);
   void begin();
+  void clear();
   void displayNumber(uint8_t number, uint8_t r, uint8_t g, uint8_t b, uint32_t color2, uint8_t digit);
   void numberUpdate(uint16_t number, uint8_t r, uint8_t g, uint8_t b);
 
