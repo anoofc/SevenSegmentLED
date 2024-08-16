@@ -15,6 +15,8 @@ public:
   void clear();
   void displayNumber(uint8_t number, uint8_t r, uint8_t g, uint8_t b, uint8_t digit);
   void numberUpdate(uint32_t number, uint8_t r, uint8_t g, uint8_t b);
+  void setBrightness(uint8_t brightness);
+
 
 private: 
   Adafruit_NeoPixel strip;              // Create an instance of the Adafruit NeoPixel class

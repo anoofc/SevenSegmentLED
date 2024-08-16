@@ -9,7 +9,13 @@ SevenSegmentLED::SevenSegmentLED(int ledPin, int digits) : strip(digits*7, ledPi
 // Initialize the display
 void SevenSegmentLED::begin() {     // Function to initialize the display
   strip.begin();                    // Initialize the strip
+  strip.clear();                    // Clear the strip
   strip.show();                     // Update the strip
+}
+
+void SevenSegmentLED::setBrightness(uint8_t brightness) {    // Function to set the brightness of the display
+  strip.setBrightness(brightness);                           // Set the brightness of the strip
+  strip.show();                                              // Update the strip
 }
 
 // Display a number on the specified digit
