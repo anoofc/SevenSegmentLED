@@ -17,4 +17,5 @@ SevenSegmentLED	KEYWORD2
 begin	KEYWORD2
 clear	KEYWORD2
 displayNumber	KEYWORD2
-numberUpdate	KEYWORD2
+numberUpdate KEYWORD2
+setBrightness KEYWORD2
